@@ -3,7 +3,7 @@ CarND · T2 · P3 · Kidnapped Vehicle
 
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
-<img src="output/images/004 - Simulator Rotated.png" alt="Unscented Kalman Filter visualization on the simulator." />
+<img src="output/images/004 - Simulator Rotated.png" alt="Particles Filter visualization on the simulator." />
 
 
 Project Overview
