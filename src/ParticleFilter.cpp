@@ -114,18 +114,6 @@ void ParticleFilter::updateWeights(
 	vector<LandmarkObs> &observations,
     const Map &map_landmarks
 ) {
-	// TODO: Update the weights of each particle using a mult-variate Gaussian distribution. You can read
-	//   more about this distribution here: https://en.wikipedia.org/wiki/Multivariate_normal_distribution
-	// NOTE: The observations are given in the VEHICLE'S coordinate system. Your particles are located
-	//   according to the MAP'S coordinate system. You will need to transform between the two systems.
-	//   Keep in mind that this transformation requires both rotation AND translation (but no scaling).
-	//   The following is a good resource for the theory:
-	//   https://www.willamette.edu/~gorr/classes/GeneralGraphics/Transforms/transforms2d.htm
-	//   and the following is a good resource for the actual equation to implement (look at equation 
-	//   3.33
-	//   http://planning.cs.uiuc.edu/node99.html
-
-
     // We do this once here instead of doing a sqrt on the inner-most loop:
     const double sensor_range_2 = pow(sensor_range, 2);
     const double std_x = std_landmark[0];
@@ -138,6 +126,11 @@ void ParticleFilter::updateWeights(
     #pragma omp parallel for num_threads(12) nowait
     for (int i = 0; i < num_particles_; ++i) {
         Particle particle = particles_[i];
+
+        // TODO: Improve this and/or make it optional:
+        particles_[i].associations = vector<int>();
+        particles_[i].sense_x = vector<double>();
+        particles_[i].sense_y = vector<double>();
 
         // Calculate landmarks in range:
 
@@ -155,7 +148,8 @@ void ParticleFilter::updateWeights(
         const double theta_cos = cos(particle.theta);
         const double theta_sin = sin(particle.theta);
 
-        // Init particle weight:
+        // Init particle weight (mult-variate Gaussian distribution):
+        // See https://en.wikipedia.org/wiki/Multivariate_normal_distribution).
         double weight = 1.0;
 
         for (int j = 0; j < total_observations; ++j) {
@@ -165,8 +159,9 @@ void ParticleFilter::updateWeights(
             const double obs_x_rel = observation.x;
             const double obs_y_rel = observation.y;
 
-            const double obs_x_glob = particle.x + theta_cos * obs_x_rel - theta_sin * obs_y_rel;
-            const double obs_y_glob = particle.y + theta_sin * obs_x_rel + theta_cos * obs_y_rel;
+            // Equations from figure 3.33 at http://planning.cs.uiuc.edu/node99.html:
+            const double obs_x_glob = obs_x_rel * theta_cos - obs_y_rel * theta_sin + particle.x;
+            const double obs_y_glob = obs_x_rel * theta_sin + obs_y_rel * theta_cos + particle.y;
 
             // Calculate distances from landmarks to observations and keep track of the closest one:
 
@@ -192,6 +187,13 @@ void ParticleFilter::updateWeights(
             // Associate an observation to the closest landmark:
             observations[j].id = closest_landmark_id;
 
+            // Associate an observation and its position in map's coordinate system to a particle (for debugging):
+
+            // TODO: Improve this and/or make it optional
+            particles_[i].associations.push_back(closest_landmark_id);
+            particles_[i].sense_x.push_back(obs_x_glob);
+            particles_[i].sense_y.push_back(obs_y_glob);
+
             // Update weight:
 
             const double term_x = pow(obs_x_glob - closest_landmark_x, 2) / dx;
@@ -209,13 +211,12 @@ void ParticleFilter::updateWeights(
 }
 
 void ParticleFilter::resample() {
-	// TODO: Resample particles with replacement with probability proportional to their weight. 
-	// NOTE: You may find std::discrete_distribution helpful here.
-	//   http://en.cppreference.com/w/cpp/numeric/random/discrete_distribution
 
+    // TODO: Try resampling wheel method.
 
     default_random_engine gen;
 
+    // Resample particles with replacement with probability proportional to their weight. 
     discrete_distribution<int> dist_index(weights_.begin(), weights_.end());
 
     vector<Particle> particles(num_particles_);
@@ -223,12 +224,19 @@ void ParticleFilter::resample() {
     for (int i = 0; i < num_particles_; ++i) {
         const Particle chosen_one = particles_[dist_index(gen)];
 
+        // The same particle could be chosen more than once, so we can't just push it as the
+        // ids should not be repeated.
+
         particles[i] = Particle {
             i,
             chosen_one.x,
             chosen_one.y,
             chosen_one.theta,
-            chosen_one.weight
+            chosen_one.weight,
+            // TODO: Improve this: associations, sense_x and sense_y don't need to be on every single Particle.
+            chosen_one.associations,
+            chosen_one.sense_x,
+            chosen_one.sense_y,
         };
     }
 
