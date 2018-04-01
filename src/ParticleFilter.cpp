@@ -164,6 +164,8 @@ void ParticleFilter::updateWeights(
             const double obs_y_glob = obs_x_rel * theta_sin + obs_y_rel * theta_cos + particle.y;
 
             // Calculate distances from landmarks to observations and keep track of the closest one:
+            // Note dataAssociation is not used and has been removed, as it would involve additional
+            // loops and calculations.
 
             double closest_landmark_x;
             double closest_landmark_y;

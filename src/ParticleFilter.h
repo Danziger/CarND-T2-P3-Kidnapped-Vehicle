@@ -82,17 +82,6 @@ public:
     );
 	
 	/**
-	 * dataAssociation Finds which observations correspond to which landmarks (likely by using
-	 *   a nearest-neighbors data association).
-	 * @param predicted Vector of predicted landmark observations
-	 * @param observations Vector of landmark observations
-	 */
-	/* void dataAssociation(
-        const vector<LandmarkObs> predicted,
-        const vector<LandmarkObs>& observations
-    ); */
-	
-	/**
 	 * updateWeights Updates the weights for each particle based on the likelihood of the 
 	 *   observed measurements. 
 	 * @param sensor_range Range [m] of sensor
