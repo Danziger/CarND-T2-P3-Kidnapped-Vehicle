@@ -241,4 +241,5 @@ inline bool read_landmark_data(std::string filename, std::vector<LandmarkObs>& o
 	return true;
 }
 
+
 #endif /* HELPER_FUNCTIONS_H_ */

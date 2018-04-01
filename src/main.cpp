@@ -2,7 +2,7 @@
 #include <iostream>
 #include "json.hpp"
 #include <math.h>
-#include "particle_filter.h"
+#include "ParticleFilter.h"
 
 using namespace std;
 
@@ -115,7 +115,7 @@ int main()
 		  pf.resample();
 
 		  // Calculate and output the average weighted error of the particle filter over all time steps so far.
-		  vector<Particle> particles = pf.particles;
+		  vector<Particle> particles = pf.particles_;
 		  int num_particles = particles.size();
 		  double highest_weight = -1.0;
 		  Particle best_particle;
@@ -127,8 +127,9 @@ int main()
 			}
 			weight_sum += particles[i].weight;
 		  }
-		  cout << "highest w " << highest_weight << endl;
-		  cout << "average w " << weight_sum/num_particles << endl;
+		  
+          // cout << "highest w " << highest_weight << endl;
+		  // cout << "average w " << weight_sum/num_particles << endl;
 
           json msgJson;
           msgJson["best_particle_x"] = best_particle.x;

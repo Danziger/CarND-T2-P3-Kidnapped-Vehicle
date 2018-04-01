@@ -1,8 +1,25 @@
-reviewer
-submission_instructions.*
-build
-solution
-solution_data
-src/particle_filter_sol.cpp
-src/solutions
-# particle_filter.cpp
+# MAC OS:
+.DS_Store
+
+# BUILD FILES:
+build/
+
+# EDITOR CONFIG:
+.vscode/
+.vs/
+
+# XCODE
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+ide_profiles/xcode/Debug/
+ide_profiles/xcode/ExtendedKF.build/

@@ -42,7 +42,7 @@ Once the install is complete, the main program can be built and run by doing the
 
 1. Create a build directory and navigate to it: `mkdir build && cd build`
 2. Compile the project: `cmake .. && make`
-3. Run it: `./particle_filter`
+3. Run it: `./ParticleFilter`
 
 Alternatively some scripts have been included to streamline this process, these can be leveraged by executing the following in the top directory of the project:
 
@@ -52,7 +52,7 @@ Alternatively some scripts have been included to streamline this process, these 
 
 Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
 
-Note that the programs that need to be written to accomplish the project are src/particle_filter.cpp, and particle_filter.h
+Note that the programs that need to be written to accomplish the project are src/ParticleFilter.cpp, and ParticleFilter.h
 
 The program main.cpp has already been filled out, but feel free to modify it.
 
