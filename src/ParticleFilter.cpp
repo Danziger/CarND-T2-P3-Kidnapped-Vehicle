@@ -123,7 +123,7 @@ void ParticleFilter::updateWeights(
     const double d = 2.0 * M_PI * std_x * std_y;
     const int total_observations = observations.size();
 
-    #pragma omp parallel for num_threads(12) nowait
+    #pragma omp parallel for num_threads(8)
     for (int i = 0; i < num_particles_; ++i) {
         Particle particle = particles_[i];
 
