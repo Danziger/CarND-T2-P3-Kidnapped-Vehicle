@@ -166,3 +166,7 @@ Additional Resources
 --------------------
 
 - [The SLAM Problem - a Fifteen Year Journey...](https://ieeetv.ieee.org/technology/the-slam-problem-a-fifteen-year-journey)
+
+- Self-Driving Car Project Q&A | Kidnapped Vehicle
+
+  https://www.youtube.com/watch?v=-3HI3Iw3Z9g&feature=youtu.be
