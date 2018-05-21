@@ -13,7 +13,9 @@ Your robot has been kidnapped and transported to a new location! Luckily it has 
 
 In this project you will implement a 2 dimensional particle filter in C++. Your particle filter will be given a map and some initial localization information (analogous to what a GPS would provide). At each time step your filter will also get observation and control data.
 
-To test it, [Term 2 Simulator](https://github.com/udacity/self-driving-car-sim/releases) need to be used. The latest version of `main.cpp` used to run this project without the simulator can be found [here](https://github.com/udacity/CarND-Unscented-Kalman-Filter-Project/blob/10814755085e9e8b34050216baf73abaa6f1e9e9/src/main.cpp).
+To test it, [Term 2 Simulator](https://github.com/udacity/self-driving-car-sim/releases) need to be used.
+
+If you are looking for Udacity's started code project, you can find it [here](https://github.com/udacity/CarND-Kidnapped-Vehicle-Project).
 
 
 Dependencies
