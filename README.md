@@ -1,5 +1,5 @@
-CarND · T2 · P3 · Kidnapped Vehicle
-===================================
+CarND · T2 · P3 · Particles Filter Project (Kidnapped Vehicle)
+==============================================================
 
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
@@ -19,9 +19,11 @@ To test it, [Term 2 Simulator](https://github.com/udacity/self-driving-car-sim/r
 Dependencies
 ------------
 
+- [Udacity's Self Driving Car Simulator](https://github.com/udacity/self-driving-car-sim/releases)
 - [`cmake >= 3.5`](https://cmake.org/install/)
 - `make >= 4.1` (Linux / [Mac](https://developer.apple.com/xcode/features/)), [`3.81` (Windows)](http://gnuwin32.sourceforge.net/packages/make.htm)
 - `gcc/g++ >= 5.4` (Linux / [Mac](https://developer.apple.com/xcode/features/)), [`MinGW` (Windows)](http://www.mingw.org/)
+- [`uWebSockets` commit `e94b6e1`](https://github.com/uWebSockets/uWebSockets). See the following section for installation instructions and additional details.
 
 
 Installation
@@ -34,21 +36,31 @@ This repository includes two files that can be used to set up and intall [uWebSo
 
 For Windows, Docker or VMware coulso also be used as explained in the [course lectures](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/16cf4a78-4fc7-49e1-8621-3450ca938b77). Details about enviroment setup can also be found there.
 
+If you install from source, checkout to commit `e94b6e1`, as some function signatures have changed in `v0.14.x`:
 
-Build
------
+    git clone https://github.com/uWebSockets/uWebSockets
+    cd uWebSockets
+    git checkout e94b6e1
+
+See [this PR](https://github.com/udacity/CarND-MPC-Project/pull/3) for more details.
+
+
+Build & Run
+-----------
 
 Once the install is complete, the main program can be built and run by doing the following from the project top directory:
 
 1. Create a build directory and navigate to it: `mkdir build && cd build`
 2. Compile the project: `cmake .. && make`
-3. Run it: `./ParticleFilter`
+3. Run it: `./PF`
 
-Alternatively some scripts have been included to streamline this process, these can be leveraged by executing the following in the top directory of the project:
+Or, all together (from inside the `build` directory): `clear && cmake .. && make && ./PF`
 
-1. ./clean.sh
-2. ./build.sh
-3. ./run.sh
+Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d).
+
+
+ETC
+---
 
 Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
 
