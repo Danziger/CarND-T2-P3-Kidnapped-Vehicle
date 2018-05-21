@@ -2,7 +2,9 @@ project(PARTICLE_FILTER)
 
 cmake_minimum_required (VERSION 3.5)
 
-add_definitions(-std=c++11)
+# -g allows for gdb debugging
+# -03 enables optimizations for best performance
+add_definitions(-std=c++11 -O3)
 
 set(CXX_FLAGS "-Wall -O3 -funroll-loops -fopenmp")
 set(CMAKE_CXX_FLAGS "${CXX_FLAGS}")
