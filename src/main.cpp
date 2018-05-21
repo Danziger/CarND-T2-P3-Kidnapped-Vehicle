@@ -7,6 +7,9 @@
 #include <iostream>
 
 
+#define MAP_DATA_SRC "../input/data/map_data.txt"
+
+
 // For convenience:
 using json = nlohmann::json;
 using namespace std;
@@ -45,11 +48,12 @@ int main() {
     double sigma_pos[3] = { 0.3, 0.3, 0.01 }; // GPS measurement uncertainty [x [m], y [m], theta [rad]]
     double sigma_landmark[2] = { 0.3, 0.3 }; // Landmark measurement uncertainty [x [m], y [m]]
 
-    // Read map data
+    // Read map data:
+
     Map map;
 
-    if (!read_map_data("../data/map_data.txt", map)) {
-        cout << "Error: Could not open map file" << endl;
+    if (!read_map_data(MAP_DATA_SRC, map)) {
+        cout << "Error: Could not open map file at " << MAP_DATA_SRC << endl;
 
         return -1;
     }

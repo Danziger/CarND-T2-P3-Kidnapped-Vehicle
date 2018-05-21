@@ -1,4 +1,4 @@
-project(PARTICLE_FILTER)
+project(PF)
 
 cmake_minimum_required (VERSION 3.5)
 
@@ -8,7 +8,7 @@ add_definitions(-std=c++11 -O3)
 
 set(CXX_FLAGS "-Wall -O3 -funroll-loops -fopenmp")
 set(CMAKE_CXX_FLAGS "${CXX_FLAGS}")
-set(CMAKE_VERBOSE_MAKEFILE ON)
+# set(CMAKE_VERBOSE_MAKEFILE ON)
 
 set(sources src/ParticleFilter.cpp src/main.cpp)
 
@@ -24,8 +24,6 @@ link_directories(/usr/local/Cellar/libuv/1*/lib)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
 
 
-add_executable(ParticleFilter ${sources})
+add_executable(PF ${sources})
 
-
-target_link_libraries(ParticleFilter z ssl uv uWS)
-
+target_link_libraries(PF z ssl uv uWS)

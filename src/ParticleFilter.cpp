@@ -167,8 +167,8 @@ void ParticleFilter::updateWeights(
             // Note dataAssociation is not used and has been removed, as it would involve additional
             // loops and calculations.
 
-            double closest_landmark_x;
-            double closest_landmark_y;
+            double closest_landmark_x = 0;
+            double closest_landmark_y = 0;
             double closest_landmark_distance_2 = numeric_limits<double>::max();
             int closest_landmark_id = -1;
 
@@ -243,19 +243,6 @@ void ParticleFilter::resample() {
     }
 
     particles_ = particles;
-}
-
-Particle ParticleFilter::SetAssociations(Particle& particle, const std::vector<int>& associations, 
-                                     const std::vector<double>& sense_x, const std::vector<double>& sense_y)
-{
-    //particle: the particle to assign each listed association, and association's (x,y) world coordinates mapping to
-    // associations: The landmark id that goes along with each listed association
-    // sense_x: the associations x mapping already converted to world coordinates
-    // sense_y: the associations y mapping already converted to world coordinates
-
-    particle.associations= associations;
-    particle.sense_x = sense_x;
-    particle.sense_y = sense_y;
 }
 
 string ParticleFilter::getAssociations(Particle best)
