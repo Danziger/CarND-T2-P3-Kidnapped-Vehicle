@@ -10,7 +10,14 @@ set(CXX_FLAGS "-Wall -O3 -funroll-loops -fopenmp")
 set(CMAKE_CXX_FLAGS "${CXX_FLAGS}")
 # set(CMAKE_VERBOSE_MAKEFILE ON)
 
-set(sources src/ParticleFilter.cpp src/main.cpp)
+set(SOURCES
+    src/common/format.h
+    src/common/helpers.cpp
+    src/common/helpers.h
+    src/main.cpp
+    src/ParticleFilter.cpp
+    src/ParticleFilter.h
+)
 
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
@@ -24,6 +31,6 @@ link_directories(/usr/local/Cellar/libuv/1*/lib)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
 
 
-add_executable(PF ${sources})
+add_executable(PF ${SOURCES})
 
 target_link_libraries(PF z ssl uv uWS)
